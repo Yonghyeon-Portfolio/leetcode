@@ -19,6 +19,8 @@ int lengthOfLongestSubstr(string& s){
             currlen = i - char_map[c];
         else
             currlen += 1;
+        
+        // cout << s.substr(i - currlen+1, currlen) << endl;
         maxlen = currlen > maxlen ? currlen : maxlen;
         char_map[c] = i;
     }
@@ -26,7 +28,7 @@ int lengthOfLongestSubstr(string& s){
 }
 
 int main(){
-    string s = "mom";
+    string s = "mlomabcdo";
     int result = lengthOfLongestSubstr(s);
     cout << result << endl;
     return 0;
