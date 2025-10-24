@@ -10,25 +10,24 @@ int lengthOfLongestSubstr(string& s){
     
     int maxlen = 1;
     int currlen = 1;
-    unordered_map<char, int> char_map;
-    char_map[s[0]] = 0;
+    unordered_map<char, int> last_seen;
+    last_seen[s[0]] = 0;
 
     for (int i = 1; i < s.size(); i++){
         char c = s[i];
-        if (char_map.count(c) && (i - char_map[c]) <= currlen)
-            currlen = i - char_map[c];
+        if (last_seen.count(c) && (i - last_seen[c]) <= currlen)
+            currlen = i - last_seen[c];
         else
             currlen += 1;
-        
-        // cout << s.substr(i - currlen+1, currlen) << endl;
-        maxlen = currlen > maxlen ? currlen : maxlen;
-        char_map[c] = i;
+       
+        maxlen = currlen >= maxlen ? currlen : maxlen;
+        last_seen[c] = i;
     }
     return maxlen;
 }
 
 int main(){
-    string s = "mlomabcdo";
+    string s = "omlmabcdo";
     int result = lengthOfLongestSubstr(s);
     cout << result << endl;
     return 0;
